@@ -21,4 +21,3 @@ Project is created with:
 
 1. Install it locally using `npm install`
 2. Run the project using `npm run dev`
-

@@ -1,8 +1,7 @@
-function App() {
+import React from 'react';
 
-  return (
-    <h1>Shopping cart</h1>
-  )
+function App() {
+	return <h1>Shopping cart</h1>;
 }
 
-export default App
+export default App;
