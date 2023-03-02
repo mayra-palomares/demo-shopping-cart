@@ -1,7 +1,8 @@
-import React from 'react';
+import ProductList from './components/ProductList/ProductList';
+import { products } from './mocks/products.json';
 
 function App() {
-	return <h1>Shopping cart</h1>;
+	return <ProductList products={products} />;
 }
 
 export default App;
