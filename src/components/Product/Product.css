@@ -1,4 +1,38 @@
-.product {
+.productCard {
 	display: flex;
 	flex-direction: column;
+	border-radius: 5px;
+	background: white;
+	box-shadow: 0 0 4px gainsboro;
+}
+
+.productDetails {
+	padding: 10px;
+	opacity: 0.8;
+	font-family: monospace;
+}
+
+.productCard img {
+	display: block;
+	width: 100%;
+	object-fit: cover;
+	aspect-ratio: 16/9;
+	border-radius: 5px 5px 0 0;
+	background: #fff;
+}
+
+.productTitle {
+	text-align: start;
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.productPrice {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 5px;
+}
+
+.productPrice span {
+	font-size: 1rem;
 }
