@@ -8,7 +8,7 @@ type Props = {
 
 const Product = ({ product }: Props) => {
 	return (
-		<li key={product.id} className="productCard">
+		<li className="productCard">
 			<img src={product.thumbnail} alt={product.title} />
 			<div className="productDetails">
 				<div className="productTitle">

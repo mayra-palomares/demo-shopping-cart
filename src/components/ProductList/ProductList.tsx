@@ -12,7 +12,7 @@ const ProductList = ({ products }: Props) => {
 		<main className="products">
 			<ul>
 				{products.map((product) => (
-					<Product product={product} />
+					<Product key={product.id} product={product} />
 				))}
 			</ul>
 		</main>

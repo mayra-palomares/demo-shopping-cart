@@ -1,8 +1,7 @@
-import ProductList from './components/ProductList/ProductList';
-import { products } from './mocks/products.json';
+import Home from './pages/Home';
 
 function App() {
-	return <ProductList products={products} />;
+	return <Home />;
 }
 
 export default App;
