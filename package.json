@@ -35,7 +35,7 @@
 		"vite": "^4.1.0"
 	},
 	"lint-staged": {
-		"*.js": "npm run lint",
-		"*.{js,css,md,html,json}": "npm run format"
+		"*.{js,ts,tsx}": "npm run lint",
+		"*.{ts,tsx,js,css,md,html,json}": "npm run format"
 	}
 }
