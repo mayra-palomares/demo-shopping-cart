@@ -1,11 +1,11 @@
+import React from 'react';
 import { useState } from 'react';
 import ProductList from '../components/ProductList/ProductList';
+import Header from '../layouts/Header/Header';
 import IProduct from '../types/Product';
 import { products as initialProducts } from './../mocks/products.json';
 
-type Props = {};
-
-const Home = (props: Props) => {
+const Home = () => {
 	const [products] = useState(initialProducts);
 	const [filters, setFilters] = useState({
 		category: 'all',
@@ -22,7 +22,12 @@ const Home = (props: Props) => {
 
 	const filteredProducts = filterProducts(products);
 
-	return <ProductList products={filteredProducts} />;
+	return (
+		<>
+			<Header />
+			<ProductList products={filteredProducts} />
+		</>
+	);
 };
 
 export default Home;

@@ -1,4 +1,4 @@
-import { AddToCartIcon } from './../../utils/Icon';
+import React from 'react';
 import IProduct from './../../types/Product';
 import Product from '../Product/Product';
 import './ProductList.css';
