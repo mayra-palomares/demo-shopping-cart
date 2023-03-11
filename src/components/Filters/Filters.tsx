@@ -1,23 +1,26 @@
 import React, { useId } from 'react';
-import { useState } from 'react';
 import './Filters.css';
 import { categories } from '../../types/constants';
 import useFilters from '../../hooks/useFilters';
 
 const Filters = () => {
-	const [_, filters, setFilters] = useFilters();
+	const { filters, setFilters } = useFilters();
 	const minPriceId = useId();
 	const categoryId = useId();
 
-	const handleChangeMinPrice = (event) => {
+	const handleChangeMinPrice = (
+		event: React.ChangeEvent<HTMLInputElement>
+	): void => {
 		const value = event.target.value;
 		setFilters((prevState) => ({
 			...prevState,
-			minPrice: value,
+			minPrice: +value,
 		}));
 	};
 
-	const handleChangeCategory = (event) => {
+	const handleChangeCategory = (
+		event: React.ChangeEvent<HTMLSelectElement>
+	): void => {
 		const value = event.target.value;
 		setFilters((prevState) => ({
 			...prevState,

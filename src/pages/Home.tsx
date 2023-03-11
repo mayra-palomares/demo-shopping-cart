@@ -8,8 +8,8 @@ import { products as initialProducts } from './../mocks/products.json';
 
 const Home = () => {
 	const [products] = useState(initialProducts);
-	const [filterProducts] = useFilters();
-	const filteredProducts: IProduct[] = filterProducts(products)!;
+	const { filterProducts } = useFilters();
+	const filteredProducts: IProduct[] = filterProducts(products);
 
 	return (
 		<>
