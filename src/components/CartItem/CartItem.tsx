@@ -1,20 +1,33 @@
 import React from 'react';
+import { MdClear } from 'react-icons/md';
+import './CartItem.css';
 
 const CartItem = () => {
 	return (
-		<li>
-			<img
-				src="https://i.dummyjson.com/data/products/2/thumbnail.jpg"
-				alt="Iphone"
-			/>
-			<div>
-				<strong>Iphone</strong> - $1499
-			</div>
-			<div>
-				<small>Qty: 1</small>
+		<tr className="cartItem">
+			<td className="productName">
+				<img
+					src="https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+					alt="Iphone"
+					width="130px"
+					height="90px"
+				/>
+				<p>Iphone</p>
+			</td>
+			<td>
+				<button>-</button>
+				<small>1</small>
 				<button>+</button>
-			</div>
-		</li>
+			</td>
+			<td>
+				<small>$1500</small>
+			</td>
+			<td>
+				<button>
+					<MdClear />
+				</button>
+			</td>
+		</tr>
 	);
 };
 
