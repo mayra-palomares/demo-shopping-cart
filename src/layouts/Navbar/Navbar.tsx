@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CartIcon } from '../../utils/Icon';
+import { MdOutlineShoppingCart } from 'react-icons/md';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -21,7 +21,7 @@ const Navbar = () => {
 			<ul>
 				<li>
 					<Link to="cart" className="link">
-						<CartIcon />
+						<MdOutlineShoppingCart />
 					</Link>
 				</li>
 			</ul>

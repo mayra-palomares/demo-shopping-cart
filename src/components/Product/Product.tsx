@@ -1,6 +1,6 @@
 import React from 'react';
 import IProduct from '../../types/Product';
-import { AddToCartIcon } from '../../utils/Icon';
+import { MdAddShoppingCart } from 'react-icons/md';
 import './Product.css';
 
 type Props = {
@@ -17,7 +17,7 @@ const Product = ({ product }: Props) => {
 				</div>
 				<div className="productPrice">
 					<span>${product.price}</span>
-					<AddToCartIcon />
+					<MdAddShoppingCart />
 				</div>
 			</div>
 		</li>
