@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { FiltersContext } from '../context/filters';
-import IProduct from '../types/Product';
+import IProduct from '../types/IProduct';
 
 const useFilters = () => {
 	const { filters, setFilters } = useContext(FiltersContext);
