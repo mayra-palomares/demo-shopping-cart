@@ -31,14 +31,19 @@ class Cart implements ICart {
 	}
 
 	addToCart(product: IProduct) {
-		const cartItem = new CartItem(product.id, product.price);
+		const cartItem = new CartItem(
+			product.id,
+			product.title,
+			product.price,
+			product.thumbnail
+		);
 		this.items.push(cartItem);
 
 		this.calculateTotal();
 	}
 
-	editCartItem(product: IProduct, quantity: number) {
-		const index = this.items.findIndex((item) => item.productId === product.id);
+	editCartItem(productId: number, quantity: number) {
+		const index = this.items.findIndex((item) => item.productId === productId);
 		if (index !== -1) {
 			const cartItem = { ...this.items[index], quantity };
 			this.items.splice(index, 1, cartItem);
@@ -46,8 +51,8 @@ class Cart implements ICart {
 		}
 	}
 
-	removeCartItem(product: IProduct) {
-		const index = this.items.findIndex((item) => item.productId === product.id);
+	removeCartItem(productId: number) {
+		const index = this.items.findIndex((item) => item.productId === productId);
 		if (index !== -1) {
 			this.items.splice(index, 1);
 			this.calculateTotal();

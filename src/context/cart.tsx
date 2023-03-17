@@ -5,8 +5,8 @@ import IProduct from '../types/IProduct';
 type CartContent = {
 	cart: Cart;
 	addToCart: (product: IProduct) => void;
-	editCartItem: (product: IProduct, quantity: number) => void;
-	removeCartItem: (product: IProduct) => void;
+	editCartItem: (product: number, quantity: number) => void;
+	removeCartItem: (product: number) => void;
 	clearCart: () => void;
 };
 export const CartContext = createContext({} as CartContent);
@@ -23,13 +23,13 @@ export const CartProvider = ({ children }: Props) => {
 		setCart(cart);
 	};
 
-	const editCartItem = (product: IProduct, quantity: number) => {
-		cart.editCartItem(product, quantity);
+	const editCartItem = (productId: number, quantity: number) => {
+		cart.editCartItem(productId, quantity);
 		setCart(cart);
 	};
 
-	const removeCartItem = (product: IProduct) => {
-		cart.removeCartItem(product);
+	const removeCartItem = (productId: number) => {
+		cart.removeCartItem(productId);
 		setCart(cart);
 	};
 
