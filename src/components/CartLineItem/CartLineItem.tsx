@@ -12,8 +12,12 @@ const CartLineItem = ({ item }: Props) => {
 	const { editCartItem, removeCartItem } = useCart();
 
 	const onDecrement = () => {
-		const newQty = item.quantity - 1;
-		editCartItem(item.productId, newQty);
+		if (item.quantity > 1) {
+			const newQty = item.quantity - 1;
+			editCartItem(item.productId, newQty);
+		} else if (item.quantity === 1) {
+			removeCartItem(item.productId);
+		}
 	};
 	const onIncrement = () => {
 		const newQty = item.quantity + 1;
