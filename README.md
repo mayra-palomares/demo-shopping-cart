@@ -8,7 +8,7 @@
 
 ## General info
 
-This is a shopping cart created with Vite and TypeScript.
+This is a shopping cart created with React, TypeScript and Vite.
 
 ## Technologies
 
@@ -16,6 +16,7 @@ Project is created with:
 
 - TypeScript
 - Vite
+- React
 
 ## Setup
 
