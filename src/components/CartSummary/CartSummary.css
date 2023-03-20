@@ -1,0 +1,8 @@
+.cartSummary {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 100px;
+	padding: 10px;
+	font-weight: bold;
+}

@@ -1,13 +1,16 @@
 import React from 'react';
-import IProduct from '../../types/Product';
-import { AddToCartIcon } from '../../utils/Icon';
+import IProduct from '../../types/IProduct';
+import { MdAddShoppingCart } from 'react-icons/md';
 import './Product.css';
+import useCart from '../../hooks/useCart';
 
 type Props = {
 	product: IProduct;
 };
 
 const Product = ({ product }: Props) => {
+	const { addToCart } = useCart();
+
 	return (
 		<li className="productCard">
 			<img src={product.thumbnail} alt={product.title} />
@@ -17,7 +20,9 @@ const Product = ({ product }: Props) => {
 				</div>
 				<div className="productPrice">
 					<span>${product.price}</span>
-					<AddToCartIcon />
+					<button onClick={() => addToCart(product)}>
+						<MdAddShoppingCart />
+					</button>
 				</div>
 			</div>
 		</li>

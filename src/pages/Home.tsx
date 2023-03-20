@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import Filters from '../components/Filters/Filters';
 import ProductList from '../components/ProductList/ProductList';
 import useFilters from '../hooks/useFilters';
-import Footer from '../layouts/Footer/Footer';
-import Header from '../layouts/Header/Header';
-import IProduct from '../types/Product';
+import IProduct from '../types/IProduct';
 import { products as initialProducts } from './../mocks/products.json';
 
 const Home = () => {
@@ -13,9 +12,8 @@ const Home = () => {
 
 	return (
 		<>
-			<Header />
+			<Filters />
 			<ProductList products={filteredProducts} />
-			<Footer />
 		</>
 	);
 };

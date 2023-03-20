@@ -1,5 +1,5 @@
 import React from 'react';
-import IProduct from './../../types/Product';
+import IProduct from '../../types/IProduct';
 import Product from '../Product/Product';
 import './ProductList.css';
 

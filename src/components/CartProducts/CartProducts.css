@@ -1,0 +1,32 @@
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	border-bottom: 1px solid rgba(128, 128, 128, 0.495);
+}
+
+th {
+	text-transform: uppercase;
+	color: rgba(78, 76, 76, 0.941);
+	padding: 10px;
+}
+
+.cartActions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cartActions button {
+	background-color: white;
+	color: black;
+	display: flex;
+	gap: 5px;
+}
+
+.cartActions button:hover {
+	border: white;
+}

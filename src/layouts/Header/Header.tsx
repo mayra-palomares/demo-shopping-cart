@@ -1,11 +1,10 @@
 import React from 'react';
-import Filters from '../../components/Filters/Filters';
+import Navbar from '../Navbar/Navbar';
 
 const Header = () => {
 	return (
-		<header>
-			<h1>React Shop</h1>
-			<Filters />
+		<header className="header">
+			<Navbar />
 		</header>
 	);
 };
