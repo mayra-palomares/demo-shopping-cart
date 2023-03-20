@@ -20,14 +20,21 @@ export const CartProvider = ({ children }: Props) => {
 	const [cart, setCart] = useState<Cart>(new Cart());
 
 	const addToCart = (product: IProduct) => {
-		const cartItem = new CartItem(
-			product.id,
-			product.title,
-			product.price,
-			product.thumbnail
-		);
-		cart.items.push(cartItem);
-		cart.total = calculateTotal(cart);
+		const index = cart.items.findIndex((item) => item.productId === product.id);
+		if (index === -1) {
+			// if not found
+			const cartItem = new CartItem(
+				product.id,
+				product.title,
+				product.price,
+				product.thumbnail
+			);
+			cart.items.push(cartItem);
+			cart.total = calculateTotal(cart);
+		} else {
+			cart.items[index].quantity += 1;
+			cart.total = calculateTotal(cart);
+		}
 
 		setCart({ ...cart } as Cart);
 	};
@@ -35,8 +42,7 @@ export const CartProvider = ({ children }: Props) => {
 	const editCartItem = (productId: number, quantity: number) => {
 		const index = cart.items.findIndex((item) => item.productId === productId);
 		if (index !== -1) {
-			const cartItem = { ...cart.items[index], quantity };
-			cart.items.splice(index, 1, cartItem);
+			cart.items[index].quantity = quantity;
 			cart.total = calculateTotal(cart);
 		}
 
