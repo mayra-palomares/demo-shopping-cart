@@ -29,48 +29,6 @@ class Cart implements ICart {
 		this.status = CartStatus.CREATED;
 		this.createdAt = new Date();
 	}
-
-	addToCart(product: IProduct) {
-		const cartItem = new CartItem(
-			product.id,
-			product.title,
-			product.price,
-			product.thumbnail
-		);
-		this.items.push(cartItem);
-
-		this.calculateTotal();
-	}
-
-	editCartItem(productId: number, quantity: number) {
-		const index = this.items.findIndex((item) => item.productId === productId);
-		if (index !== -1) {
-			const cartItem = { ...this.items[index], quantity };
-			this.items.splice(index, 1, cartItem);
-			this.calculateTotal();
-		}
-	}
-
-	removeCartItem(productId: number) {
-		const index = this.items.findIndex((item) => item.productId === productId);
-		if (index !== -1) {
-			this.items.splice(index, 1);
-			this.calculateTotal();
-		}
-	}
-
-	clearCart() {
-		this.items = [];
-		this.total = 0;
-	}
-
-	private calculateTotal() {
-		let total = 0;
-		this.items.forEach((item) => {
-			total += item.quantity * item.price;
-		});
-		this.total = total;
-	}
 }
 
 export default Cart;

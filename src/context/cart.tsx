@@ -1,5 +1,6 @@
 import React, { createContext, ReactNode, useState } from 'react';
 import Cart from '../types/Cart';
+import CartItem from '../types/CartItem';
 import IProduct from '../types/IProduct';
 
 type CartContent = {
@@ -16,26 +17,55 @@ type Props = {
 };
 
 export const CartProvider = ({ children }: Props) => {
-	const [cart, setCart] = useState(new Cart());
+	const [cart, setCart] = useState<Cart>(new Cart());
 
 	const addToCart = (product: IProduct) => {
-		cart.addToCart(product);
-		setCart(cart);
+		const cartItem = new CartItem(
+			product.id,
+			product.title,
+			product.price,
+			product.thumbnail
+		);
+		cart.items.push(cartItem);
+		cart.total = calculateTotal(cart);
+
+		setCart({ ...cart } as Cart);
 	};
 
 	const editCartItem = (productId: number, quantity: number) => {
-		cart.editCartItem(productId, quantity);
-		setCart(cart);
+		const index = cart.items.findIndex((item) => item.productId === productId);
+		if (index !== -1) {
+			const cartItem = { ...cart.items[index], quantity };
+			cart.items.splice(index, 1, cartItem);
+			cart.total = calculateTotal(cart);
+		}
+
+		setCart({ ...cart } as Cart);
 	};
 
 	const removeCartItem = (productId: number) => {
-		cart.removeCartItem(productId);
-		setCart(cart);
+		const index = cart.items.findIndex((item) => item.productId === productId);
+		if (index !== -1) {
+			cart.items.splice(index, 1);
+			cart.total = calculateTotal(cart);
+		}
+
+		setCart({ ...cart } as Cart);
 	};
 
 	const clearCart = () => {
-		cart.clearCart();
-		setCart(cart);
+		cart.items = [];
+		cart.total = 0;
+
+		setCart({ ...cart } as Cart);
+	};
+
+	const calculateTotal = (cart: Cart) => {
+		let total = 0;
+		cart.items.forEach((item) => {
+			total += item.quantity * item.price;
+		});
+		return total;
 	};
 
 	return (
