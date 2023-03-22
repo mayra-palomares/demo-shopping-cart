@@ -7,13 +7,11 @@ import './index.css';
 import { CartProvider } from './context/cart';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<FiltersProvider>
-				<CartProvider>
-					<App />
-				</CartProvider>
-			</FiltersProvider>
-		</BrowserRouter>
-	</React.StrictMode>
+	<BrowserRouter>
+		<FiltersProvider>
+			<CartProvider>
+				<App />
+			</CartProvider>
+		</FiltersProvider>
+	</BrowserRouter>
 );

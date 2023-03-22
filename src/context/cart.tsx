@@ -1,6 +1,9 @@
-import React, { createContext, ReactNode, useState } from 'react';
+import React, { createContext, ReactNode, useReducer } from 'react';
+import CartReducer, {
+	CartActionType,
+	initialState,
+} from '../reducers/CartReducer';
 import Cart from '../types/Cart';
-import CartItem from '../types/CartItem';
 import IProduct from '../types/IProduct';
 
 type CartContent = {
@@ -17,66 +20,31 @@ type Props = {
 };
 
 export const CartProvider = ({ children }: Props) => {
-	const [cart, setCart] = useState<Cart>(new Cart());
+	const [state, dispatch] = useReducer(CartReducer, initialState);
 
-	const addToCart = (product: IProduct) => {
-		const index = cart.items.findIndex((item) => item.productId === product.id);
-		if (index === -1) {
-			// if not found
-			const cartItem = new CartItem(
-				product.id,
-				product.title,
-				product.price,
-				product.thumbnail
-			);
-			cart.items.push(cartItem);
-			cart.total = calculateTotal(cart);
-		} else {
-			cart.items[index].quantity += 1;
-			cart.total = calculateTotal(cart);
-		}
+	const addToCart = (product: IProduct) =>
+		dispatch({ type: CartActionType.ADD_TO_CART, payload: { product } });
 
-		setCart({ ...cart } as Cart);
-	};
-
-	const editCartItem = (productId: number, quantity: number) => {
-		const index = cart.items.findIndex((item) => item.productId === productId);
-		if (index !== -1) {
-			cart.items[index].quantity = quantity;
-			cart.total = calculateTotal(cart);
-		}
-
-		setCart({ ...cart } as Cart);
-	};
-
-	const removeCartItem = (productId: number) => {
-		const index = cart.items.findIndex((item) => item.productId === productId);
-		if (index !== -1) {
-			cart.items.splice(index, 1);
-			cart.total = calculateTotal(cart);
-		}
-
-		setCart({ ...cart } as Cart);
-	};
-
-	const clearCart = () => {
-		cart.items = [];
-		cart.total = 0;
-
-		setCart({ ...cart } as Cart);
-	};
-
-	const calculateTotal = (cart: Cart) => {
-		let total = 0;
-		cart.items.forEach((item) => {
-			total += item.quantity * item.price;
+	const editCartItem = (productId: number, quantity: number) =>
+		dispatch({
+			type: CartActionType.EDIT_CART_ITEM,
+			payload: { productId, quantity },
 		});
-		return total;
-	};
+
+	const removeCartItem = (productId: number) =>
+		dispatch({ type: CartActionType.REMOVE_CART_ITEM, payload: { productId } });
+
+	const clearCart = () => dispatch({ type: CartActionType.CLEAR_CART });
 
 	return (
 		<CartContext.Provider
-			value={{ cart, addToCart, editCartItem, removeCartItem, clearCart }}
+			value={{
+				cart: state.cart,
+				addToCart,
+				editCartItem,
+				removeCartItem,
+				clearCart,
+			}}
 		>
 			{children}
 		</CartContext.Provider>
