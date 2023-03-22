@@ -1,5 +1,4 @@
 import CartItem from './CartItem';
-import IProduct from './IProduct';
 
 export enum CartStatus {
 	CREATED,
