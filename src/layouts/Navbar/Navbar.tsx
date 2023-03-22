@@ -6,7 +6,11 @@ import './Navbar.css';
 const Navbar = () => {
 	return (
 		<nav className="navbar">
-			<h1>React Shop</h1>
+			<h1>
+				<Link to="/" className="link">
+					React Shop
+				</Link>
+			</h1>
 			<ul>
 				<li>
 					<Link to="/" className="link">
