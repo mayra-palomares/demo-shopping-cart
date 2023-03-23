@@ -1,6 +1,12 @@
 import Cart from '../types/Cart';
 import CartItem from '../types/CartItem';
 import IProduct from '../types/IProduct';
+import {
+	getLocalStorageItem,
+	setLocalStorageItem,
+} from '../utils/localStorage';
+
+const CART = 'cart';
 
 type CartState = {
 	cart: Cart;
@@ -33,7 +39,11 @@ const calculateTotal = (cart: Cart) => {
 };
 
 export const initialState: CartState = {
-	cart: new Cart(),
+	cart: getLocalStorageItem<Cart>(CART, new Cart()),
+};
+
+const updateLocalStorage = (cart: Cart): void => {
+	setLocalStorageItem<Cart>(CART, cart);
 };
 
 const CartReducer = (state: CartState, action: CartAction) => {
@@ -57,6 +67,7 @@ const CartReducer = (state: CartState, action: CartAction) => {
 				cart.total = calculateTotal(cart);
 			}
 		}
+		updateLocalStorage(cart);
 		return { cart: { ...cart } };
 	case CartActionType.EDIT_CART_ITEM:
 		if (quantity) {
@@ -66,6 +77,7 @@ const CartReducer = (state: CartState, action: CartAction) => {
 				cart.total = calculateTotal(cart);
 			}
 		}
+		updateLocalStorage(cart);
 		return { cart: { ...cart } };
 	case CartActionType.REMOVE_CART_ITEM:
 		index = cart.items.findIndex(
@@ -75,10 +87,12 @@ const CartReducer = (state: CartState, action: CartAction) => {
 			cart.items.splice(index, 1);
 			cart.total = calculateTotal(cart);
 		}
+		updateLocalStorage(cart);
 		return { cart: { ...cart } };
 	case CartActionType.CLEAR_CART:
 		cart.items = [];
 		cart.total = 0;
+		updateLocalStorage(cart);
 		return { cart: { ...cart } };
 	}
 
