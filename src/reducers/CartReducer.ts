@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import Cart from '../types/Cart';
 import CartItem from '../types/CartItem';
 import IProduct from '../types/IProduct';
@@ -5,6 +6,7 @@ import {
 	getLocalStorageItem,
 	setLocalStorageItem,
 } from '../utils/localStorage';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CART = 'cart';
 
@@ -66,7 +68,9 @@ const CartReducer = (state: CartState, action: CartAction) => {
 				cart.items[index].quantity += 1;
 				cart.total = calculateTotal(cart);
 			}
+			toast.success('Product added to the cart', {});
 		}
+
 		updateLocalStorage(cart);
 		return { cart: { ...cart } };
 	case CartActionType.EDIT_CART_ITEM:
@@ -76,6 +80,7 @@ const CartReducer = (state: CartState, action: CartAction) => {
 				cart.items[index].quantity = quantity;
 				cart.total = calculateTotal(cart);
 			}
+			toast.success('Product quantity was updated', {});
 		}
 		updateLocalStorage(cart);
 		return { cart: { ...cart } };
@@ -86,12 +91,14 @@ const CartReducer = (state: CartState, action: CartAction) => {
 		if (index !== -1) {
 			cart.items.splice(index, 1);
 			cart.total = calculateTotal(cart);
+			toast.success('Product was removed', {});
 		}
 		updateLocalStorage(cart);
 		return { cart: { ...cart } };
 	case CartActionType.CLEAR_CART:
 		cart.items = [];
 		cart.total = 0;
+		toast.success('Cart products were removed', {});
 		updateLocalStorage(cart);
 		return { cart: { ...cart } };
 	}
